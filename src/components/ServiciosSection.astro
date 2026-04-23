@@ -1,0 +1,218 @@
+---
+import { servicios } from '../data/servicios';
+---
+
+<span class="deco-line" aria-hidden="true"></span>
+
+<section id="servicios" class="section-pad" style="background-color: #fff; padding-top: clamp(4rem, 8vw, 7rem);">
+  <div class="site-container">
+
+    <div class="servicios-header fade-in">
+      <h2 class="servicios-titulo fade-in fade-in-delay-1">
+        <span class="servicios-titulo-red">Servicios</span><span class="servicios-titulo-dark">&nbsp;Y CLASES</span>
+      </h2>
+    </div>
+
+    <div class="servicios-grid">
+      {servicios.map((s, i) => (
+        <article class={`servicio-card card-brackets fade-in fade-in-delay-${Math.min(i + 1, 5)}`}>
+          <div class="servicio-img-wrap">
+            {s.esVideo ? (
+              <video
+                src={s.imagen}
+                class="servicio-img"
+                autoplay
+                muted
+                loop
+                playsinline
+              />
+            ) : (
+              <img
+                src={s.imagen}
+                alt={s.nombre}
+                loading="lazy"
+                width="600"
+                height="400"
+                class="servicio-img"
+              />
+            )}
+          </div>
+          <div class="servicio-body">
+            <h3 class="servicio-nombre">{s.nombre}</h3>
+            <p class="servicio-desc">{s.descripcion}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div style="display: flex; justify-content: center; margin-top: 3rem;">
+      <a href="/#horarios" class="btn-servicios">
+        <span>Ver Horarios</span>
+        <span class="btn-servicios-sep"></span>
+        <span class="btn-servicios-arrow">↗</span>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .servicios-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .servicios-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  @media (min-width: 640px) {
+    .servicios-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .servicios-grid {
+      grid-template-columns: repeat(6, 1fr);
+    }
+    .servicio-card {
+      grid-column: span 2;
+    }
+    .servicio-card:nth-child(4) {
+      grid-column: 2 / 4;
+    }
+    .servicio-card:nth-child(5) {
+      grid-column: 4 / 6;
+    }
+  }
+
+  .servicio-card {
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .servicios-titulo {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.05em;
+    line-height: 1;
+  }
+  .servicios-titulo-red,
+  .servicios-titulo-dark {
+    font-family: 'Bebas Neue', sans-serif;
+    font-weight: 400;
+    font-size: clamp(3rem, 7vw, 6rem);
+    letter-spacing: 0.02em;
+    line-height: 1;
+    font-style: italic;
+  }
+  .servicios-titulo-red {
+    color: var(--color-primary);
+  }
+  .servicios-titulo-dark {
+    color: var(--color-primary);
+  }
+
+  .servicio-img-wrap {
+    aspect-ratio: 3/2;
+    overflow: hidden;
+    border-radius: 0;
+  }
+
+  .servicio-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%);
+    transition: transform 0.4s ease, filter 0.4s ease;
+  }
+
+  .servicio-card:hover .servicio-img {
+    transform: scale(1.04);
+    filter: grayscale(100%);
+  }
+
+  .servicio-body {
+    padding: 1.25rem 0.25rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 1;
+  }
+
+  .servicio-horario {
+    font-size: 0.68rem;
+    color: var(--color-primary);
+  }
+
+  .servicio-nombre {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    letter-spacing: 0.02em;
+    color: #111;
+    line-height: 1;
+  }
+
+  .servicio-desc {
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: #555;
+    flex: 1;
+  }
+
+  .btn-servicios {
+    display: inline-flex;
+    align-items: center;
+    background-color: #E01A1A;
+    color: #fff;
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: 0;
+    overflow: hidden;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+  }
+  .btn-servicios:hover { background-color: #B51414; }
+  .btn-servicios > span:first-child { padding: 0.65rem 1.1rem; }
+  .btn-servicios-sep {
+    display: block;
+    width: 1px;
+    height: 100%;
+    align-self: stretch;
+    background-color: rgba(0,0,0,0.4);
+  }
+
+  .btn-servicios-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #E01A1A;
+    padding: 0.65rem 0.75rem;
+    font-size: 1rem;
+    border-left: none;
+  }
+
+  .servicio-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: #111;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    margin-top: 0.5rem;
+    transition: color 0.2s ease;
+  }
+  .servicio-link:hover {
+    color: var(--color-primary);
+  }
+</style>

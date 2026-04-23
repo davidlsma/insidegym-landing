@@ -1,0 +1,156 @@
+---
+const dias = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes'];
+
+const horarios = [
+  { hora: '07:00', lunes: 'Open Door', martes: 'Open Door', miercoles: 'Open Door', jueves: 'Open Door', viernes: 'Open Door' },
+  { hora: '08:00', lunes: 'Body Pump', martes: 'Woman Fit', miercoles: 'Body Pump', jueves: 'Woman Fit', viernes: 'Body Pump' },
+  { hora: '08:30', lunes: '—', martes: 'Insanity', miercoles: '—', jueves: 'Insanity', viernes: '—' },
+  { hora: '14:00', lunes: 'Body Pump', martes: 'Cycling', miercoles: 'Body Pump', jueves: 'Cycling', viernes: 'Body Pump' },
+  { hora: '15:00', lunes: 'Cycling', martes: '—', miercoles: 'Cycling', jueves: '—', viernes: 'Cycling' },
+  { hora: '19:00', lunes: 'Woman Fit', martes: 'Insanity', miercoles: 'Woman Fit', jueves: 'Insanity', viernes: 'Woman Fit' },
+  { hora: '20:00', lunes: 'Body Pump', martes: 'Combinada', miercoles: 'Body Pump', jueves: 'Combinada', viernes: 'Body Pump' },
+  { hora: '20:15', lunes: 'Cycling', martes: 'Woman Fit', miercoles: 'Cycling', jueves: 'Woman Fit', viernes: 'Cycling' },
+];
+
+const clases = [
+  { nombre: 'Body Pump', color: '#E01A1A' },
+  { nombre: 'Cycling', color: '#E01A1A' },
+  { nombre: 'Insanity', color: '#E01A1A' },
+  { nombre: 'Woman Fit', color: '#E01A1A' },
+  { nombre: 'Combinada', color: '#E01A1A' },
+  { nombre: 'Open Door', color: 'rgba(255,255,255,0.3)' },
+];
+---
+
+<span class="deco-line" aria-hidden="true"></span>
+
+<section id="horarios" class="section-pad" style="background-color: var(--color-surface-mid);">
+  <div class="site-container">
+
+    <div style="margin-bottom: 3.5rem; text-align: center;">
+      <h2 class="horarios-titulo fade-in">
+        <span class="horarios-titulo-red">Horario</span><span class="horarios-titulo-white">&nbsp;Actual</span>
+      </h2>
+      <p class="body-lg fade-in fade-in-delay-2" style="color: var(--color-on-surface-muted); margin-top: 1rem;">
+        Musculación personalizada de <strong style="color:#fff">07:00 a 22:00</strong>, lunes a viernes. Los fines de semana permanecemos cerrados. Los horarios pueden variar — seguinos en Instagram para mantenerte actualizado.
+      </p>
+    </div>
+
+    <div class="table-wrap fade-in fade-in-delay-2">
+      <table class="horarios-table" role="table" aria-label="Horario de clases grupales">
+        <thead>
+          <tr>
+            <th scope="col">Hora</th>
+            {dias.map(d => <th scope="col">{d}</th>)}
+          </tr>
+        </thead>
+        <tbody>
+          {horarios.map(row => (
+            <tr>
+              <td class="hora-cell">{row.hora}</td>
+              <td class={row.lunes !== '—' ? 'clase-cell' : 'empty-cell'}>{row.lunes}</td>
+              <td class={row.martes !== '—' ? 'clase-cell' : 'empty-cell'}>{row.martes}</td>
+              <td class={row.miercoles !== '—' ? 'clase-cell' : 'empty-cell'}>{row.miercoles}</td>
+              <td class={row.jueves !== '—' ? 'clase-cell' : 'empty-cell'}>{row.jueves}</td>
+              <td class={row.viernes !== '—' ? 'clase-cell' : 'empty-cell'}>{row.viernes}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: var(--radius);
+    border: 1px solid var(--color-border);
+  }
+
+  .horarios-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px;
+  }
+
+  .horarios-table thead tr {
+    background-color: var(--color-surface-high);
+  }
+
+  .horarios-table th {
+    padding: 0.9rem 1rem;
+    text-align: center;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .horarios-table th:first-child {
+    text-align: left;
+    color: rgba(255,255,255,0.3);
+  }
+
+  .horarios-table tbody tr {
+    border-bottom: 1px solid var(--color-border);
+    transition: background-color 0.15s ease;
+  }
+
+  .horarios-table tbody tr:last-child {
+    border-bottom: none;
+  }
+
+  .horarios-table tbody tr:hover {
+    background-color: rgba(255,255,255,0.02);
+  }
+
+  .horarios-table td {
+    padding: 0.85rem 1rem;
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+
+  .hora-cell {
+    text-align: left !important;
+    color: rgba(255,255,255,0.35);
+    font-size: 0.75rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+  }
+
+  .clase-cell {
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.78rem !important;
+    letter-spacing: 0.03em;
+  }
+
+  .empty-cell {
+    color: rgba(255,255,255,0.15);
+  }
+
+  .horarios-titulo {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.05em;
+    line-height: 1;
+  }
+  .horarios-titulo-red,
+  .horarios-titulo-white {
+    font-family: 'Bebas Neue', sans-serif;
+    font-weight: 400;
+    font-size: clamp(3rem, 7vw, 6rem);
+    letter-spacing: 0.02em;
+    line-height: 1;
+    font-style: italic;
+  }
+  .horarios-titulo-red { color: var(--color-primary); }
+  .horarios-titulo-white { color: #fff; }
+</style>

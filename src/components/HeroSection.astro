@@ -1,0 +1,195 @@
+---
+---
+
+<section
+  id="hero"
+  class="relative flex items-end justify-start overflow-hidden"
+  style="height: 100vh; background-color: #151515;"
+  aria-label="Bienvenida a Inside Gym"
+>
+  <img
+    src="/images/hero-desktop.png"
+    alt=""
+    loading="eager"
+    decoding="async"
+    class="hero-bg hero-bg-desktop"
+    aria-hidden="true"
+  />
+  <img
+    src="/images/hero.png"
+    alt=""
+    loading="eager"
+    decoding="async"
+    class="hero-bg hero-bg-mobile"
+    aria-hidden="true"
+  />
+  <div class="hero-overlay" aria-hidden="true"></div>
+
+  <!-- Líneas diagonales decorativas (speed lines) -->
+  <svg class="hero-speedlines" viewBox="0 0 400 900" preserveAspectRatio="none" aria-hidden="true">
+    <line x1="380" y1="0" x2="200" y2="900" stroke="#E01A1A" stroke-width="1" opacity="0.12"/>
+    <line x1="340" y1="0" x2="160" y2="900" stroke="#E01A1A" stroke-width="0.75" opacity="0.08"/>
+    <line x1="300" y1="0" x2="120" y2="900" stroke="#E01A1A" stroke-width="0.5" opacity="0.05"/>
+  </svg>
+
+  <!-- Chevrones decorativos esquina inferior derecha -->
+  <div class="hero-chevrons" aria-hidden="true">
+    <span>‹</span><span>‹</span><span>‹</span>
+  </div>
+
+  <div class="absolute left-0 right-0 z-10 top-16 md:top-44 flex md:block justify-center md:justify-start" style="">
+    <div class="site-container w-full">
+      <p class="label-sm label-bar fade-in md:text-left text-center" style="color: #fff; font-size: 1rem;">
+        San Juan · Argentina
+      </p>
+    </div>
+  </div>
+
+  <div class="site-container absolute top-20 left-0 right-0 z-10 hidden md:block">
+    <img
+      src="/images/hero-titulo.png"
+      alt="Se más fuerte que tus excusas"
+      class="hero-titulo fade-in fade-in-delay-1"
+    />
+  </div>
+
+  <div class="absolute left-0 right-0 z-10 bottom-6 md:bottom-24">
+    <div class="site-container flex md:block justify-center">
+      <a href="/#servicios" class="btn-hero">
+        <span>Iniciar Entrenamiento</span>
+        <span class="btn-hero-sep"></span>
+        <span class="btn-hero-arrow">↗</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-25%, -47%);
+    width: 70%;
+    height: 90%;
+    object-fit: contain;
+    object-position: center center;
+  }
+
+  .hero-titulo {
+    width: clamp(280px, 45%, 520px);
+    height: auto;
+    filter: drop-shadow(0 4px 16px rgba(0,0,0,0.5));
+  }
+
+  .hero-bg-mobile { display: none; }
+
+  @media (max-width: 640px) {
+    .hero-bg-desktop { display: none; }
+    .hero-bg-mobile {
+      display: block;
+      width: 95%;
+      height: 85%;
+      transform: translate(-50%, -47%);
+    }
+  }
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at center, transparent 55%, #151515 100%);
+  }
+
+  .hero-speedlines {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 45%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .hero-chevrons {
+    position: absolute;
+    bottom: 2.5rem;
+    right: clamp(1.5rem, 5vw, 4rem);
+    display: flex;
+    gap: 0.1rem;
+    z-index: 3;
+    pointer-events: none;
+    line-height: 1;
+  }
+  .hero-chevrons span {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    color: var(--color-primary);
+    opacity: 0.35;
+    font-style: italic;
+    font-weight: 900;
+    display: block;
+    transform: scaleX(1.4);
+  }
+  .hero-chevrons span:nth-child(2) { opacity: 0.22; }
+  .hero-chevrons span:nth-child(3) { opacity: 0.12; }
+
+  .hero-brand {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.05em;
+    line-height: 1;
+    text-decoration: none;
+  }
+  .hero-brand-inside,
+  .hero-brand-02 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    line-height: 1;
+  }
+  .hero-brand-inside {
+    font-size: clamp(3rem, 8vw, 6rem);
+    color: var(--color-primary);
+  }
+  .hero-brand-02 {
+    font-size: clamp(3.5rem, 9vw, 7rem);
+    color: #fff;
+  }
+
+  .btn-hero {
+    display: inline-flex;
+    align-items: center;
+    background-color: #E01A1A;
+    color: #fff;
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: 0;
+    overflow: hidden;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+  }
+  .btn-hero:hover {
+    background-color: #B51414;
+  }
+  .btn-hero > span:first-child {
+    padding: 0.65rem 1.1rem;
+  }
+  .btn-hero-sep {
+    display: block;
+    width: 1px;
+    align-self: stretch;
+    background-color: rgba(0,0,0,0.4);
+  }
+
+  .btn-hero-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #E01A1A;
+    padding: 0.65rem 0.75rem;
+    font-size: 1rem;
+    border-left: none;
+  }
+</style>

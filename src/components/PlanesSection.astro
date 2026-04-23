@@ -1,0 +1,270 @@
+---
+const planes = [
+  {
+    nombre: 'Mensual',
+    precio: '$50.000',
+    periodo: '/ mes',
+    descripcion: 'Acceso libre a musculación y todas las clases grupales.',
+    caracteristicas: [
+      'Sala de musculación libre',
+      'Todas las clases grupales',
+      'Lunes a viernes 07:00 a 22:00',
+    ],
+    destacado: false,
+  },
+  {
+    nombre: '3 Meses',
+    precio: '$35.000',
+    periodo: '/ mes',
+    descripcion: 'Abonando los 3 meses juntos. Ahorrás $45.000 en total.',
+    caracteristicas: [
+      'Todo lo del plan mensual',
+      'Precio fijo por 3 meses',
+      'Exclusivo para nuevos socios',
+    ],
+    destacado: true,
+    badge: 'Más popular',
+  },
+  {
+    nombre: 'Clase Suelta',
+    precio: '$8.000',
+    periodo: '/ clase',
+    descripcion: 'Probá cualquier clase grupal sin compromiso.',
+    caracteristicas: [
+      'Una clase a elección',
+      'Cycling, Body Pump, Insanity o Woman Fit',
+      'Sin inscripción previa',
+    ],
+    destacado: false,
+  },
+];
+---
+
+<section id="planes" class="section-pad" style="background-color: var(--color-surface);">
+  <div class="site-container">
+
+    <div class="planes-header fade-in">
+      <h2 class="planes-titulo">
+        <span class="planes-titulo-red">Planes</span><span class="planes-titulo-white">&nbsp;Y PRECIOS</span>
+      </h2>
+    </div>
+
+    <div class="planes-grid">
+      {planes.map((plan, i) => (
+        <div class={`plan-card fade-in fade-in-delay-${i + 1} ${plan.destacado ? 'plan-destacado' : ''}`}>
+          {plan.badge && <span class="plan-badge">{plan.badge}</span>}
+          <p class="plan-nombre">{plan.nombre}</p>
+          <div class="plan-precio-wrap">
+            <span class="plan-precio">{plan.precio}</span>
+            <span class="plan-periodo">{plan.periodo}</span>
+          </div>
+          <p class="plan-desc">{plan.descripcion}</p>
+          <ul class="plan-features">
+            {plan.caracteristicas.map(c => (
+              <li class="plan-feature">
+                <span class="plan-check">✓</span>
+                {c}
+              </li>
+            ))}
+          </ul>
+          <a href="https://instagram.com/inside02gym" target="_blank" rel="noopener noreferrer" class={plan.destacado ? 'btn-plan-primary' : 'btn-plan-ghost'}>
+            <span>Consultar</span>
+            <span class="btn-plan-sep"></span>
+            <span class="btn-plan-arrow">↗</span>
+          </a>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .planes-header {
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+
+  .planes-titulo {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.05em;
+    line-height: 1;
+  }
+  .planes-titulo-red,
+  .planes-titulo-white {
+    font-family: 'Bebas Neue', sans-serif;
+    font-weight: 400;
+    font-size: clamp(3rem, 7vw, 6rem);
+    letter-spacing: 0.02em;
+    line-height: 1;
+    font-style: italic;
+  }
+  .planes-titulo-red {
+    color: var(--color-primary);
+  }
+  .planes-titulo-white {
+    color: #fff;
+  }
+
+  .planes-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    max-width: 800px;
+  }
+
+  @media (min-width: 640px) {
+    .planes-grid {
+      grid-template-columns: repeat(3, 1fr);
+      max-width: 100%;
+    }
+  }
+
+  .plan-card {
+    position: relative;
+    background-color: var(--color-surface-high);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    border: 1px solid var(--color-border);
+  }
+
+  .plan-destacado {
+    border-color: var(--color-primary);
+    background-color: var(--color-surface-mid);
+  }
+
+  .plan-badge {
+    position: absolute;
+    top: -1px;
+    right: 1.5rem;
+    background-color: var(--color-primary);
+    color: #fff;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.75rem;
+  }
+
+  .plan-nombre {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    letter-spacing: 0.04em;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+  }
+
+  .plan-precio-wrap {
+    display: flex;
+    align-items: baseline;
+    gap: 0.4rem;
+  }
+
+  .plan-precio {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    color: #fff;
+    line-height: 1;
+  }
+
+  .plan-destacado .plan-precio {
+    color: var(--color-primary);
+  }
+
+  .plan-periodo {
+    font-size: 0.85rem;
+    color: var(--color-on-surface-muted);
+  }
+
+  .plan-desc {
+    font-size: 0.875rem;
+    color: var(--color-on-surface-muted);
+    line-height: 1.6;
+    border-top: 1px solid var(--color-border);
+    padding-top: 1rem;
+  }
+
+  .plan-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    flex: 1;
+  }
+
+  .plan-feature {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.875rem;
+    color: rgba(255,255,255,0.75);
+  }
+
+  .plan-check {
+    color: var(--color-primary);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .btn-plan-primary,
+  .btn-plan-ghost {
+    display: inline-flex;
+    align-items: center;
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: 0;
+    overflow: hidden;
+    text-decoration: none;
+    margin-top: 0.5rem;
+    transition: background-color 0.2s ease;
+    align-self: flex-start;
+  }
+
+  .btn-plan-primary {
+    background-color: #E01A1A;
+    color: #fff;
+  }
+  .btn-plan-primary:hover { background-color: #B51414; }
+
+  .btn-plan-ghost {
+    background-color: transparent;
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.3);
+  }
+  .btn-plan-ghost:hover { border-color: #fff; }
+
+  .btn-plan-primary > span:first-child,
+  .btn-plan-ghost > span:first-child { padding: 0.65rem 1.1rem; }
+
+  .btn-plan-sep {
+    display: block;
+    width: 1px;
+    align-self: stretch;
+    background-color: rgba(0,0,0,0.4);
+  }
+
+  .btn-plan-ghost .btn-plan-sep {
+    background-color: rgba(255,255,255,0.2);
+  }
+
+  .btn-plan-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.65rem 0.75rem;
+    font-size: 1rem;
+    background-color: #E01A1A;
+    color: #fff;
+  }
+
+  .btn-plan-ghost .btn-plan-arrow {
+    background-color: transparent;
+    border-left: 1px solid rgba(255,255,255,0.3);
+  }
+</style>

@@ -1,0 +1,47 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import HeroSection from '../components/HeroSection.astro';
+import NosotrosSection from '../components/NosotrosSection.astro';
+import ServiciosSection from '../components/ServiciosSection.astro';
+import PlanesSection from '../components/PlanesSection.astro';
+import HorariosSection from '../components/HorariosSection.astro';
+import GaleriaSection from '../components/GaleriaSection.astro';
+import UbicacionSection from '../components/UbicacionSection.astro';
+import CtaSection from '../components/CtaSection.astro';
+import FooterSection from '../components/FooterSection.astro';
+---
+
+<BaseLayout
+  title="Inside Gym — Musculación y Clases Grupales en San Juan"
+  description="Gimnasio en San Juan con sala de musculación, cycling, body pump, insanity y más. Entrenadores profesionales. Lunes a viernes de 7 a 22 hs."
+>
+  <Nav />
+  <main>
+    <HeroSection />
+    <NosotrosSection />
+    <ServiciosSection />
+    <PlanesSection />
+    <GaleriaSection />
+    <HorariosSection />
+    <UbicacionSection />
+    <CtaSection />
+  </main>
+  <FooterSection />
+</BaseLayout>
+
+<script>
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+  );
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>

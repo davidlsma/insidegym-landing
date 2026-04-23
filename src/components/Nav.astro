@@ -1,0 +1,128 @@
+---
+const navLinks = [
+  { href: '/#nosotros', label: 'Nosotros' },
+  { href: '/#servicios', label: 'Servicios' },
+  { href: '/#horarios', label: 'Horarios' },
+  { href: '/#galeria', label: 'Galería' },
+  { href: '/#ubicacion', label: 'Ubicación' },
+];
+---
+
+<header id="main-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+  <nav class="site-container flex items-center justify-between" style="padding-top: 1.25rem; padding-bottom: 1.25rem;">
+
+    <a href="/" class="nav-brand md:flex-none flex-1 md:text-left text-center" aria-label="Inside Gym — Inicio">
+      <span class="brand-inside">INSIDE</span><span class="brand-02">02</span>
+    </a>
+
+    <ul class="hidden md:flex items-center gap-7 ml-auto" style="margin-right: 6%;" role="list">
+      {navLinks.map(link => (
+        <li>
+          <a href={link.href} class="nav-link label-sm" style="color: rgba(255,255,255,0.65)">
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <button
+      id="mobile-menu-btn"
+      class="md:hidden text-white p-2"
+      aria-label="Abrir menú"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <svg id="icon-open" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+      <svg id="icon-close" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" class="hidden">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+  </nav>
+
+  <div id="mobile-menu" class="hidden md:hidden border-t bg-black/96 backdrop-blur-md" style="border-color: rgba(255,255,255,0.08);">
+    <ul class="flex flex-col" role="list">
+      {navLinks.map(link => (
+        <li>
+          <a href={link.href} class="mobile-nav-link label-sm block border-b text-center" style="color: rgba(255,255,255,0.7); border-color: rgba(255,255,255,0.08); padding: 1.5rem 0;">
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</header>
+
+<script>
+  const nav = document.getElementById('main-nav');
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  const iconOpen = document.getElementById('icon-open');
+  const iconClose = document.getElementById('icon-close');
+
+  window.addEventListener('scroll', () => {
+    nav?.classList.toggle('scrolled', window.scrollY > 80);
+  }, { passive: true });
+
+  btn?.addEventListener('click', () => {
+    const isHidden = menu?.classList.toggle('hidden');
+    btn.setAttribute('aria-expanded', String(!isHidden));
+    iconOpen?.classList.toggle('hidden', !isHidden);
+    iconClose?.classList.toggle('hidden', isHidden ?? true);
+    if (!isHidden) nav?.classList.add('scrolled');
+    else if (window.scrollY <= 80) nav?.classList.remove('scrolled');
+  });
+
+  menu?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      menu.classList.add('hidden');
+      btn?.setAttribute('aria-expanded', 'false');
+      iconOpen?.classList.remove('hidden');
+      iconClose?.classList.add('hidden');
+    });
+  });
+</script>
+
+<style>
+  #main-nav {
+    background: transparent;
+    border-bottom: 1px solid transparent;
+  }
+  #main-nav.scrolled {
+    background: rgba(10, 10, 10, 0.92);
+    border-bottom-color: rgba(255,255,255,0.06);
+    backdrop-filter: blur(var(--nav-blur));
+  }
+  .nav-brand {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.05em;
+    line-height: 1;
+    text-decoration: none;
+  }
+  .brand-inside,
+  .brand-02 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    line-height: 1;
+  }
+  .brand-inside {
+    font-size: 1.45rem;
+    color: var(--color-primary);
+  }
+  .brand-02 {
+    font-size: 1.75rem;
+    color: #fff;
+  }
+  .nav-link {
+    transition: color 0.2s ease;
+  }
+  .nav-link:hover {
+    color: #fff !important;
+  }
+</style>

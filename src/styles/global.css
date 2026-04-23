@@ -1,0 +1,250 @@
+@import "tailwindcss";
+
+/* ===== DESIGN TOKENS ===== */
+:root {
+  --color-primary:       #E01A1A;
+  --color-primary-dark:  #B51414;
+  --color-surface:       #0A0A0A;
+  --color-surface-mid:   #111111;
+  --color-surface-high:  #1E1E1E;
+  --color-border:        rgba(255,255,255,0.08);
+  --color-on-surface:    #FFFFFF;
+  --color-on-surface-muted: rgba(255,255,255,0.55);
+  --nav-blur: 20px;
+  --radius: 0.5rem;
+
+  --font-display: 'Bebas Neue', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+}
+
+/* ===== RESET ===== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-surface);
+  color: var(--color-on-surface);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ===== LAYOUT ===== */
+.site-container {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(1.25rem, 4vw, 2.5rem);
+  padding-right: clamp(1.25rem, 4vw, 2.5rem);
+}
+
+.section-pad {
+  padding-top: clamp(4rem, 8vw, 7rem);
+  padding-bottom: clamp(4rem, 8vw, 7rem);
+}
+
+/* ===== TIPOGRAFÍA ===== */
+.heading-display {
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 9vw, 8rem);
+  line-height: 0.95;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.heading-xl {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 5rem);
+  line-height: 1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.heading-lg {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3vw, 3rem);
+  line-height: 1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.label-sm {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.body-lg {
+  font-size: clamp(1rem, 1.5vw, 1.125rem);
+  line-height: 1.7;
+}
+
+/* ===== BOTONES ===== */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--color-primary);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.9rem 1.75rem;
+  border-radius: var(--radius);
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-dark);
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: transparent;
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.9rem 1.75rem;
+  border-radius: var(--radius);
+  border: 1px solid rgba(255,255,255,0.3);
+  text-decoration: none;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.btn-ghost:hover {
+  border-color: #fff;
+  background-color: rgba(255,255,255,0.05);
+}
+
+/* ===== DECORATIVE ELEMENTS ===== */
+
+/* Línea roja con glow */
+.deco-line {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-primary) 0%, rgba(224,26,26,0.4) 50%, transparent 100%);
+  box-shadow: 0 0 12px 2px rgba(224,26,26,0.55), 0 0 28px 6px rgba(224,26,26,0.18);
+}
+
+/* Label con barra roja izquierda */
+.label-bar {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+.label-bar::before {
+  content: '';
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: var(--color-primary);
+  flex-shrink: 0;
+  box-shadow: 0 0 6px rgba(224,26,26,0.7);
+}
+
+/* Marco rojo offset en imágenes */
+.img-frame {
+  position: relative;
+}
+.img-frame::before {
+  content: '';
+  position: absolute;
+  inset: 10px -10px -10px 10px;
+  border: 1.5px solid var(--color-primary);
+  border-radius: var(--radius);
+  opacity: 0.55;
+  pointer-events: none;
+  z-index: 0;
+}
+.img-frame > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Brackets en esquinas de cards */
+.card-brackets {
+  position: relative;
+}
+.card-brackets::before,
+.card-brackets::after {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  pointer-events: none;
+  z-index: 2;
+  transition: opacity 0.3s ease;
+  opacity: 0;
+}
+.card-brackets::before {
+  top: 10px;
+  left: 10px;
+  border-top: 2px solid var(--color-primary);
+  border-left: 2px solid var(--color-primary);
+}
+.card-brackets::after {
+  bottom: 10px;
+  right: 10px;
+  border-bottom: 2px solid var(--color-primary);
+  border-right: 2px solid var(--color-primary);
+}
+.card-brackets:hover::before,
+.card-brackets:hover::after {
+  opacity: 1;
+}
+
+/* ===== FADE-IN ANIMATIONS ===== */
+.fade-in {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-in-delay-1 { transition-delay: 0.1s; }
+.fade-in-delay-2 { transition-delay: 0.2s; }
+.fade-in-delay-3 { transition-delay: 0.3s; }
+.fade-in-delay-4 { transition-delay: 0.4s; }
+.fade-in-delay-5 { transition-delay: 0.5s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-in {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
