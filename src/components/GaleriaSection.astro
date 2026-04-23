@@ -1,14 +1,14 @@
 ---
 const fotos = [
-  { src: '/images/musculacion.jpg', alt: 'Musculación Inside Gym' },
-  { src: '/images/bodypump.jpg', alt: 'Body Pump Inside Gym' },
-  { src: '/images/cycling.jpg', alt: 'Cycling Inside Gym' },
-  { src: '/images/funcional.jpg', alt: 'Woman Fit Inside Gym' },
-  { src: '/images/insanity.jpg', alt: 'Insanity Inside Gym' },
+  { src: '/images/galeria-musculacion.jpg', alt: 'Musculación Inside Gym' },
+  { src: '/images/galeria-bodypump.jpg', alt: 'Body Pump Inside Gym' },
+  { src: '/images/galeria-clip.jpg', alt: 'Inside Gym' },
+  { src: '/images/galeria-woman-fit.jpg', alt: 'Woman Fit Inside Gym' },
 ];
 ---
 
-<section id="galeria" class="section-pad" style="background-color: #fff;">
+<span class="deco-line" aria-hidden="true"></span>
+<section id="galeria" class="section-pad" style="background-color: #000;">
   <div class="site-container">
 
     <div class="galeria-header">
@@ -52,7 +52,7 @@ const fotos = [
     font-style: italic;
   }
   .galeria-titulo-red { color: var(--color-primary); }
-  .galeria-titulo-dark { color: var(--color-primary); }
+  .galeria-titulo-dark { color: #fff; }
 
   .galeria-header {
     text-align: center;
@@ -67,7 +67,7 @@ const fotos = [
 
   @media (min-width: 768px) {
     .galeria-grid {
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
     }
   }
 

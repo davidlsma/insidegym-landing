@@ -1,11 +1,12 @@
 ---
 const year = new Date().getFullYear();
 const navLinks = [
-  { href: '/#nosotros', label: 'Nosotros' },
   { href: '/#servicios', label: 'Servicios' },
+  { href: '/#planes', label: 'Planes' },
   { href: '/#horarios', label: 'Horarios' },
   { href: '/#galeria', label: 'Galería' },
   { href: '/#ubicacion', label: 'Ubicación' },
+  { href: '/#resenas', label: 'Reseñas' },
 ];
 ---
 
@@ -14,12 +15,15 @@ const navLinks = [
 
     <div class="footer-top">
       <div class="footer-brand">
-        <a href="/" aria-label="Inside Gym — Inicio">
-          <img src="/images/logo.jpg" alt="Inside Gym" width="90" height="45" class="footer-logo" loading="lazy" />
+        <a href="/" class="footer-brand-link" aria-label="Inside Gym — Inicio">
+          <span class="footer-brand-inside">INSIDE</span><span class="footer-brand-02">02</span>
         </a>
-        <p style="color: var(--color-on-surface-muted); font-size: 0.875rem; line-height: 1.6; max-width: 28ch; margin-top: 1rem;">
-          Gimnasio en San Juan. Musculación y clases grupales. Lunes a viernes de 7 a 22 hs.
-        </p>
+        <img
+          src="/images/hero-titulo.png"
+          alt="Se más fuerte que tus excusas"
+          class="footer-hero-titulo"
+          loading="lazy"
+        />
       </div>
 
       <nav aria-label="Links del footer">
@@ -75,11 +79,35 @@ const navLinks = [
     }
   }
 
-  .footer-logo {
-    height: 40px;
-    width: auto;
-    object-fit: contain;
-    border-radius: 4px;
+  .footer-brand-link {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.05em;
+    line-height: 1;
+    text-decoration: none;
+  }
+  .footer-brand-inside,
+  .footer-brand-02 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    line-height: 1;
+  }
+  .footer-brand-inside {
+    font-size: 1.45rem;
+    color: var(--color-primary);
+  }
+  .footer-brand-02 {
+    font-size: 1.75rem;
+    color: #fff;
+  }
+
+  .footer-hero-titulo {
+    width: clamp(140px, 18vw, 200px);
+    height: auto;
+    margin-top: 1rem;
+    opacity: 0.75;
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4));
   }
 
   .footer-link {

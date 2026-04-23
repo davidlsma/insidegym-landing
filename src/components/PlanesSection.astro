@@ -40,6 +40,7 @@ const planes = [
 ];
 ---
 
+<span class="deco-line" aria-hidden="true"></span>
 <section id="planes" class="section-pad" style="background-color: var(--color-surface);">
   <div class="site-container">
 
@@ -51,7 +52,7 @@ const planes = [
 
     <div class="planes-grid">
       {planes.map((plan, i) => (
-        <div class={`plan-card fade-in fade-in-delay-${i + 1} ${plan.destacado ? 'plan-destacado' : ''}`}>
+        <div class={`plan-card card-brackets fade-in fade-in-delay-${i + 1} ${plan.destacado ? 'plan-destacado' : ''}`}>
           {plan.badge && <span class="plan-badge">{plan.badge}</span>}
           <p class="plan-nombre">{plan.nombre}</p>
           <div class="plan-precio-wrap">

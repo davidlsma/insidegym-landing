@@ -1,6 +1,7 @@
 ---
 ---
 
+<span class="deco-line" aria-hidden="true"></span>
 <section id="ubicacion" class="section-pad ubicacion-section">
   <div class="site-container">
 
@@ -121,19 +122,27 @@
   }
   .ubicacion-section {
     position: relative;
-    background-image: url('/images/ubicacion-bg.jpg');
-    background-size: cover;
-    background-position: center;
   }
   .ubicacion-section::before {
     content: '';
     position: absolute;
     inset: 0;
+    background-image: url('/images/ubicacion-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    filter: grayscale(1);
+    z-index: 0;
+  }
+  .ubicacion-section::after {
+    content: '';
+    position: absolute;
+    inset: 0;
     background: rgba(0,0,0,0.65);
+    z-index: 1;
   }
   .ubicacion-section .site-container {
     position: relative;
-    z-index: 1;
+    z-index: 2;
   }
 
   .ubicacion-titulo-red { color: var(--color-primary); }

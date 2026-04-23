@@ -1,10 +1,11 @@
 ---
 const navLinks = [
-  { href: '/#nosotros', label: 'Nosotros' },
   { href: '/#servicios', label: 'Servicios' },
+  { href: '/#planes', label: 'Planes' },
   { href: '/#horarios', label: 'Horarios' },
   { href: '/#galeria', label: 'Galería' },
   { href: '/#ubicacion', label: 'Ubicación' },
+  { href: '/#resenas', label: 'Reseñas' },
 ];
 ---
 
@@ -15,7 +16,7 @@ const navLinks = [
       <span class="brand-inside">INSIDE</span><span class="brand-02">02</span>
     </a>
 
-    <ul class="hidden md:flex items-center gap-7 ml-auto" style="margin-right: 6%;" role="list">
+    <ul class="hidden md:flex items-center gap-7 ml-auto" style="margin-right: 2%;" role="list">
       {navLinks.map(link => (
         <li>
           <a href={link.href} class="nav-link label-sm" style="color: rgba(255,255,255,0.65)">
